@@ -1,0 +1,177 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.about,
+.services,
+.contact {
+    margin-bottom: 30px;
+}
+
+.about h2,
+.services h2,
+.contact h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.about p,
+.services ul,
+.contact p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.services ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.contact a {
+    color: #007bff;
+}
+
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9em;
+}
+
+/* Стили для формы входа и регистрации */
+/* Стили для формы входа и регистрации */
+.login-container,
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #111;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.login-container h2,
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.login-container form,
+.register-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label,
+.register-container label {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"],
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Добавляем стили для поля с именем */
+.login-container input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
+
+.login-container button[type="submit"],
+.register-container button[type="submit"] {
+    background-color: #863fc8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.login-container button[type="submit"]:hover,
+.register-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.login-container p,
+.register-container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.login-container a,
+.register-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-container a:hover,
+.register-container a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.register-link {
+    color: #863fc8!important;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+    color: #007bff!important;
+}

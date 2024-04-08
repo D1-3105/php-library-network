@@ -1,0 +1,2 @@
+ALTER TABLE libraries
+ADD COLUMN email VARCHAR(100);
