@@ -1,28 +1,5 @@
 <style>
-    .table-desired {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .table-desired th, .table-desired td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    .table-desired th {
-        background-color: #f2f2f2;
-    }
-    .table-desired img {
-        height: 128px;
-        width: auto;
-    }
-    .delete-btn {
-        background-color: #f44336;
-        color: white;
-        padding: 6px 10px;
-        border: none;
-        cursor: pointer;
-        border-radius: 3px;
-    }
+    
 </style>
 
 <h2>Редактирование списка желаемых книг</h2>

@@ -7,4 +7,7 @@
     <div class="container mt-5">
         <?php include "reader_profile_desired_books.php"?>
     </div>
+    <div class="container mt-5">
+        <?php include "reader_profile_loans.php" ?>
+    </div>
 </main>

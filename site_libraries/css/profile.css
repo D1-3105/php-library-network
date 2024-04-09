@@ -1,0 +1,83 @@
+.table-desired {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-desired th, .table-desired td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.table-desired th {
+    background-color: #f2f2f2;
+}
+.table-desired img {
+    height: 128px;
+    width: auto;
+}
+
+.table-loans {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-loans th, .table-loans td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.table-loans th {
+    background-color: #f2f2f2;
+}
+.table-loans img {
+    height: 128px;
+    width: auto;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.success-btn {
+    background-color: #25c00d;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+/* Стили для селектов */
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  
+  /* Стили для кнопки */
+  .filter-button  {
+    padding: 10px 20px;
+    background-color: #863fc8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .link:hover {
+    color: #863fc8;
+  }
+  
+.email-field {
+    cursor: pointer;
+    text-decoration: underline;
+}

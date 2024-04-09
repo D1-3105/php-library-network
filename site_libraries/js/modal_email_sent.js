@@ -1,37 +1,54 @@
-$(document).ready(function(){
-    // Обработчик щелчка на адрес электронной почты
-    $(".email-field").click(function(){
-        var email = $(this).text();
-        $("#to").val(email); // Заполняем поле "Получатель" значением email
-        $("#emailModal").show();
+document.addEventListener("DOMContentLoaded", function() {
+    var emailModal = document.createElement("div");
+    emailModal.id = "emailModal";
+    emailModal.className = "modal";
+    emailModal.style.display = "none";
+    emailModal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Отправить сообщение</h2>
+            <form id="emailForm">
+                <input type="hidden" name="to" id="recipientEmail" value="">
+                <label for="message">Введите ваше сообщение:</label>
+                <textarea id="message" name="msg" rows="4" cols="50"></textarea><br>
+                <button type="button" id="sendEmailBtn">Отправить</button>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(emailModal);
+
+    document.querySelector(".close").addEventListener("click", function() {
+        emailModal.style.display = "none";
     });
 
-    // Закрытие модального окна по щелчку на крестик
-    $(".close").click(function(){
-        $("#emailModal").hide();
+    document.body.addEventListener("click", function(event) {
+        if (event.target.classList.contains("email-field")) {
+            var email = event.target.textContent.trim();
+            document.getElementById("recipientEmail").value = email;
+            emailModal.style.display = "block";
+        }
     });
 
-    // Обработка отправки сообщения
-    $("#emailForm").submit(function(event){
-        event.preventDefault();
-        var formData = $(this).serialize(); 
-        console.log(formData);
-        $.ajax({
-            url: "/send_email_to.php", 
-            type: "POST",
-            data: formData, 
-            dataType: "json",
-            success: function(response) {
-                if (response.success) {
-                    alert(response.message);
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function() {
-                alert("Произошла ошибка при отправке запроса на сервер.");
+    document.getElementById("sendEmailBtn").addEventListener("click", function() {
+        var formData = new FormData(document.getElementById("emailForm"));
+
+        fetch("/send_email_to.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error("Произошла ошибка при отправке запроса на сервер.");
             }
+            return response.json();
+        })
+        .then(function(data) {
+            alert(data.message);
+        })
+        .catch(function(error) {
+            alert(error.message);
         });
-        $("#emailModal").hide();
+
+        emailModal.style.display = "none";
     });
 });

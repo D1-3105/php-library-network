@@ -23,8 +23,8 @@
             echo "<h2>" . $row['name'] . "</h2>";
             echo "<p><strong>Address:</strong> " . $row['address'] . "</p>";
             echo "<p><strong>Phone:</strong> " . $row['phone'] . "</p>";
-            echo "</div>"; // Закрытие .library-details
-            echo "</a>"; // Закрытие ссылки
+            echo "</div>";
+            echo "</a>";
         }
     } else {
         echo "<p>No libraries found</p>";

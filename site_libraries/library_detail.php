@@ -68,20 +68,6 @@
     ?>
 </div>
 
-<!-- Модальное окно для отправки сообщения -->
-<div id="emailModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Отправить сообщение</h2>
-        <form id="emailForm">
-            <input type="hidden" name="to" value="<?php echo htmlspecialchars($library['email']); ?>">
-            <label for="message">Введите ваше сообщение:</label>
-            <textarea id="message" name="msg" rows="4" cols="50"></textarea><br>
-            <button type="submit">Отправить</button>
-        </form>
-    </div>
-</div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/js/modal_email_sent.js"></script>
 

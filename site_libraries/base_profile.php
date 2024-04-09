@@ -1,3 +1,4 @@
+<link href="/css/profile.css" rel="stylesheet"/>
 <?php
 include "connection.php";
 
@@ -26,5 +27,4 @@ if($user_id) {
     }
     $stmt->close();
 }
-
-
+?>
