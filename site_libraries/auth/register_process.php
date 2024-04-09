@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
 
     // Подготовленный запрос для вставки данных в таблицу пользователей
-    $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (name, email, password, library_role) VALUES (?, ?, ?, 'READER')";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $name, $email, $hashed_password);
 

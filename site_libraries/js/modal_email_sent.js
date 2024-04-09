@@ -2,6 +2,7 @@ $(document).ready(function(){
     // Обработчик щелчка на адрес электронной почты
     $(".email-field").click(function(){
         var email = $(this).text();
+        $("#to").val(email); // Заполняем поле "Получатель" значением email
         $("#emailModal").show();
     });
 
@@ -12,11 +13,25 @@ $(document).ready(function(){
 
     // Обработка отправки сообщения
     $("#emailForm").submit(function(event){
-        event.preventDefault(); // Предотвращаем отправку формы по умолчанию
-        var email = $(".email-field").text();
-        var message = $("#message").val();
-        // Здесь можно добавить логику отправки сообщения через AJAX
-        $("#emailModal").hide(); // Закрываем модальное окно после отправки сообщения
-        alert("Сообщение отправлено успешно!");
+        event.preventDefault();
+        var formData = $(this).serialize(); 
+        console.log(formData);
+        $.ajax({
+            url: "/send_email_to.php", 
+            type: "POST",
+            data: formData, 
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert("Произошла ошибка при отправке запроса на сервер.");
+            }
+        });
+        $("#emailModal").hide();
     });
 });

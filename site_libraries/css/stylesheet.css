@@ -11,8 +11,6 @@ body {
 header {
     background-color: #111;
     color: #fff;
-    padding: 20px;
-    text-align: center;
 }
 
 header h1 {
@@ -78,7 +76,6 @@ footer p {
     font-size: 0.9em;
 }
 
-/* Стили для формы входа и регистрации */
 /* Стили для формы входа и регистрации */
 .login-container,
 .register-container {
@@ -174,4 +171,26 @@ footer p {
 .register-link:hover {
     text-decoration: underline;
     color: #007bff!important;
+}
+
+.nav-reg {
+    color: white;
+}
+/* Главная */
+.library-info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.library-info h2 {
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.library-info p {
+    color: #6c757d;
+    font-size: 18px;
 }

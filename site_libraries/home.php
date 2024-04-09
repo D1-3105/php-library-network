@@ -1,37 +1,50 @@
-<h1>Welcome to City Libraries Network</h1>
-<?php
-include "./connection.php";
+<div class="container">
+    <div class="library-info">
+    <?php
+    include "./connection.php";
 
-$is_logged_in = isset($_SESSION['user_id']);
-if ($is_logged_in) {
-    // Получаем имя пользователя из базы данных (замените 'users' на вашу таблицу пользователей)
-    $user_id = $_SESSION['user_id'];
-    $query = "SELECT name FROM users WHERE user_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $user_data = $result->fetch_assoc();
-        $username = $user_data['name'];
-        echo "<p>Welcome back, $username!</p>";
+    $is_logged_in = isset($_SESSION['user_id']);
+    if ($is_logged_in) {
+        $user_id = $_SESSION['user_id'];
+        $query = "SELECT name FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $user_data = $result->fetch_assoc();
+            $username = $user_data['name'];
+            echo "<h2><i class='fas fa-book'></i> Добро пожаловать вновь в City Library Network, $username!</h2>";
+        } else {
+        }
     } else {
-        echo "<p>Welcome back, User!</p>";
+        echo "<h2><i class='fas fa-book'></i> Добро пожаловать в City Library Network!</h2>";
     }
-} else {
-    echo "<p>Welcome to our library network! Please log in to access more features.</p>";
-}
-$conn->close();
-?>
+    $conn->close();
+    ?>
+        
+        <p>City Library Network - это ведущая сеть городских библиотек, предлагающая широкий выбор литературных произведений, уникальные мероприятия и образовательные программы для всех возрастов и интересов. Наша миссия - быть центром знаний, вдохновляющим и обогащающим жизнь каждого человека в наших городах.</p>
+    </div>
 
-<div class="links">
-    <!-- Подключаем ссылку на список библиотек -->
-    <a href="/libraries/">Libraries List</a>
+    <div class="library-info">
+        <h2><i class="fas fa-building"></i> Наши библиотеки</h2>
+        <p>Мы гордимся своими современными и уютными библиотеками, которые предоставляют доступ к разнообразной коллекции книг, аудиокниг, журналов, видеоматериалов и многому другому. В наших филиалах вы найдете комфортные чтальные залы, современные компьютерные зоны, дружелюбных и профессиональных библиотекарей, готовых помочь вам в поиске нужной информации.</p>
+    </div>
 
-    <!-- Подключаем ссылку на список книг -->
-    <a href="books.php">Books List</a>
+    <div class="library-info">
+        <h2><i class="fas fa-book-open"></i> Наша коллекция</h2>
+        <p>City Library Network предлагает огромный выбор книг на любой вкус и предпочтение. У нас вы найдете художественную и научно-популярную литературу, классику и современные бестселлеры, книги для детей и подростков, а также материалы на различных языках и по разным тематикам. Мы постоянно обновляем нашу коллекцию, чтобы удовлетворить интересы наших читателей.</p>
+    </div>
 
-    <!-- Подключаем ссылку на профиль пользователя -->
-    <a href="profile.php">User Profile</a>
+    <div class="library-info">
+        <h2><i class="fas fa-calendar-alt"></i> Мероприятия и программы</h2>
+        <p>В City Library Network мы ценим образование и культурное разнообразие. Мы регулярно проводим интересные мероприятия, встречи с писателями, лекции, курсы, клубы по интересам и многое другое. Наша цель - создать пространство, где каждый может найти что-то интересное и полезное для себя.</p>
+    </div>
+
+    <div class="library-info">
+        <h2><i class="fas fa-users"></i> Вступайте в наше сообщество</h2>
+        <p>Присоединяйтесь к City Library Network прямо сейчас и откройте для себя бесконечные возможности чтения, обучения и общения. Регистрируйтесь в наших библиотеках, следите за новостями и мероприятиями на нашем сайте, и будьте в курсе всех наших акций и событий.</p>
+        <p>City Library Network - ваш путь к знаниям, вдохновению и развитию! Приходите к нам и дайте вашему разуму разгуляться!</p>
+    </div>
 </div>

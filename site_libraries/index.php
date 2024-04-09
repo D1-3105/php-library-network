@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start(); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Libraries Network</title>
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
-    <link href="/css/stylesheet.js" rel="stylesheet">
+    <link href="/css/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -25,7 +30,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="/">
                     <img src="/static/logo.svg" alt="City Libraries Network" height="30">
                     <span>City Libraries Network</span>
@@ -40,7 +45,7 @@
                             <a class="nav-link" href="/libraries/">Библиотеки</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="books.php">Книги</a>
+                            <a class="nav-link" href="/books/">Книги</a>
                         </li>
                     </ul>
                 </div>
@@ -54,11 +59,10 @@
 
 
 
+
     <main id="content" class="container py-4">
     <?php
         // base.php
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
         require_once 'router.php';
 
         $router = new Router();

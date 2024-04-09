@@ -81,6 +81,7 @@ th {
 
 .email-field {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 /* Стили для модального окна */

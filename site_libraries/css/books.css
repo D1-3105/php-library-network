@@ -1,0 +1,92 @@
+
+.book {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.book p {
+    margin: 10px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.no-results {
+    text-align: center;
+    color: #777;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+/* Стили для формы */
+#sortForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для меток */
+#sortForm label {
+    margin-right: 10px;
+}
+
+/* Стили для селектов */
+#sortOrder, #category {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Стили для кнопки */
+#sortForm input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Стили при наведении на кнопку */
+#sortForm input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Стили для формы в контейнере */
+.container #sortForm {
+    margin-top: 20px;
+}
+
+.book-ref {
+    color: #863fc8;
+}

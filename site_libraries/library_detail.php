@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/css/detail_lib.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
@@ -44,10 +43,11 @@
     
     $sql = "SELECT * FROM libraries WHERE library_id = " . $libraryId . ""; 
     $result = $conn->query($sql);
-    
+    $library = null;
     if ($result->num_rows > 0) {
         echo "<table>";
         while($row = $result->fetch_assoc()) {
+            $library = $row; 
             echo "<tr>";
             echo "<th>Название:</th><td>" . $row["name"] . "</td>";
             echo "</tr>";
@@ -74,8 +74,9 @@
         <span class="close">&times;</span>
         <h2>Отправить сообщение</h2>
         <form id="emailForm">
+            <input type="hidden" name="to" value="<?php echo htmlspecialchars($library['email']); ?>">
             <label for="message">Введите ваше сообщение:</label>
-            <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+            <textarea id="message" name="msg" rows="4" cols="50"></textarea><br>
             <button type="submit">Отправить</button>
         </form>
     </div>
