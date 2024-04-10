@@ -32,18 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Пытаемся отправить письмо
         if (send_email($email, $subject, $message, 'from@example.com')) {
-            echo 'Message has been sent<br>';
-        } else {
-            echo 'Failed to send message<br>';
-        }
+            header('Location: /registration/success/?state=success');
+        } else {}
 
         // Фиксируем изменения в базе данных
         $conn->commit();
-        echo 'User created successfully';
+        header('Location: /registration/success/?state=success');
     } else {
         // Откатываем транзакцию в случае неудачи
         $conn->rollback();
         echo 'Failed to create user';
+        header('Location: /registration/success/?state=failure');
     }
 
     // Закрываем запрос

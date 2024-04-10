@@ -8,17 +8,17 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Register</h2>
+        <h2>Регистрация</h2>
         <form action="/auth/register_process.php" method="post">
-            <label for="name">Name:</label>
+            <label for="name">Имя:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
+            <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
-            <button type="submit">Register</button>
+            <button type="submit">Зарегистрироваться</button>
         </form>
-        <p>Already have an account? <a class="login-link" href="login.php">Login</a></p>
+        <p>Уже с нами? <a class="login-link" href="login.php">Войти</a></p>
     </div>
 </body>
 </html>

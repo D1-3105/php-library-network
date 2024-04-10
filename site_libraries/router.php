@@ -38,14 +38,21 @@ class Router {
                 $this->renderView("books_list.php");
             }
 
-            elseif (preg_match('/^\/books\/(\d+)\/?$/', $uri, $matches)){
+            elseif (preg_match('/^\/books\/(\d+)\/?$/', $uri, $matches))
+            {
                 $this->bookId = $matches[1];
                 $this->renderView('book_detail.php');
+            }
+
+            elseif (strpos('/registration/success/', $uri) == 0) 
+            {
+                $this->renderView('on_reg.php');
             }
             
             else 
             {
                 $this->renderView('404.php', 404);
+                echo ''.strpos('/registration/success/', $uri);
             }
         } catch (Exception $e) {
             // Обработка исключения: пользователь не авторизован
