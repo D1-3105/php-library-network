@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO users (name, email, password, library_role) VALUES (?, ?, ?, 'READER')";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $name, $email, $hashed_password);
-
     // Выполняем запрос
     if ($stmt->execute()) {
         // Формируем сообщение
@@ -41,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Откатываем транзакцию в случае неудачи
         $conn->rollback();
-        echo 'Failed to create user';
         header('Location: /registration/success/?state=failure');
     }
 

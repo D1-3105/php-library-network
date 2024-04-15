@@ -1,30 +1,8 @@
 <?php
 // Подключаемся к базе данных
 include "connection.php";
-
-// Получаем список пользователей
-$query_users = "SELECT user_id, name FROM users";
-$result_users = $conn->query($query_users);
-
-// Получаем список книг
-$query_books = "SELECT book_id, title FROM books";
-$result_books = $conn->query($query_books);
-
-$user_id = $_SESSION["user_id"];
-if($user_id) {
-    $sql = 'SELECT * FROM users WHERE users.user_id = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $USER = $result->fetch_assoc();
-    }
-}
-$libraryId = $USER;
+require_once "auth.php";
+$libraryId = $USER['library_id'];
 ?>
 
 <!-- Форма выбора пользователя и книги -->
@@ -120,14 +98,14 @@ $libraryId = $USER;
                     if (loanElement) {
                         loanElement.remove();
                     }
-                    alert(data.message);
+                    showToast(data.message, true);
                 } else {
-                    alert(data.message);
+                    showToast(data.message, false);
                 }
             })
             .catch(error => {
                 // Выводим сообщение об ошибке при выполнении запроса
-                alert('Произошла ошибка при отправке запроса на сервер.');
+                showToast('Произошла ошибка при отправке запроса на сервер.', false);
             });
     }
 

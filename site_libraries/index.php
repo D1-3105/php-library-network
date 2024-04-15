@@ -11,6 +11,7 @@ ini_set('display_errors', 1);
     <title>City Libraries Network</title>
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <link href="/css/stylesheet.css" rel="stylesheet">
+    <script src="/js/toasts.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -72,9 +73,10 @@ ini_set('display_errors', 1);
         $view = $router->handleRequest($uri);
     ?>
     </main>
+    <div id="toastContainer" style="display: none;"></div>
     <footer class="bg-dark py-3 mt-auto">
         <div class="container text-light text-center">
-            <p>&copy; 2024 City Libraries Network. All rights reserved.</p>
+            <p>&copy; 2024 City Libraries Network. All rights reserved. <a href="/contacts/" class="text-light">Контакты</a></p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

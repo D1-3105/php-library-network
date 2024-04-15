@@ -43,32 +43,55 @@
         ?>
     </tbody>
 </table>
-
+<?php
+include "utils/confirm_modal.php";
+confirmModal("Вы действительно не хотите получить эту книгу?", "Не хочу!", "Хочу!");
+?>
 <script>
-    function deleteBook(bookId) {
-        if (confirm("Вы уверены, что хотите удалить эту книгу из списка желаемых?")) {
-            // Создаем объект XMLHttpRequest
-            let xhr = new XMLHttpRequest();
+function deleteBook(bookId) {
+    const modal = document.getElementById('confirmModal');
+    const close = document.querySelector('.close');
+    const confirmDelete = document.getElementById('confirmDelete');
+    const cancelDelete = document.getElementById('cancelDelete');
 
-            // Настраиваем AJAX-запрос
-            xhr.open("POST", `/delete_desired_book.php?book_id=${bookId}`, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Успешный ответ от сервера
-                    let response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        location.reload();
-                    } else {
-                        alert("Ошибка: " + response.message);
-                    }
-                } else {
-                    alert("Произошла ошибка при отправке запроса на сервер.");
-                }
-            };
+    modal.style.display = 'block'; // Показываем модальное окно
 
-            // Отправляем AJAX-запрос
-            xhr.send();
+    close.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    cancelDelete.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
-    }
+    };
+
+    confirmDelete.onclick = function() {
+        modal.style.display = 'none';
+        sendDeleteRequest(bookId);
+    };
+}
+
+function sendDeleteRequest(bookId) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", `/delete_desired_book.php?book_id=${bookId}`, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                location.reload();
+            } else {
+                showToast("Ошибка: " + response.message, true);
+            }
+        } else {
+            showToast("Произошла ошибка при отправке запроса на сервер.", false);
+        }
+    };
+    xhr.send();
+}
 </script>

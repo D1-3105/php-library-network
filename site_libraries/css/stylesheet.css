@@ -1,4 +1,46 @@
 /* Общие стили */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 300px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 5px;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: none; /* Скрываем контейнер тостов по умолчанию */
+}
+.toast {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0; 
+    transition: opacity 0.5s; /* Плавное появление и исчезновение */
+}
+
+.toast.show {
+    opacity: 1; /* Сделаем тост видимым */
+}
+
+.toast.success {
+    background-color: #4CAF50; /* Зеленый цвет для успешных тостов */
+}
+
+.toast.error {
+    background-color: #f44336; /* Красный цвет для тостов об ошибках */
+}
+
+.toast.show {
+    opacity: 1; /* Показываем тост */
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -248,4 +290,52 @@ button {
 
 button:hover {
     background-color: #4b087b; /* Темно-фиолетовый цвет при наведении */
+}
+/* кнопка хочу */
+.book-description {
+    white-space: pre-line;
+}
+.btn-want-active {
+    animation: pulse 2s infinite;
+    background: #863fc8;
+    border: #863fc8;
+}
+.btn-want {
+    background: #863fc8;
+    border: #863fc8;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/*кнопки confirm*/
+#confirmDelete {
+    background-color: #f44336;
+    color: white;
+}
+
+#confirmDelete:hover {
+    background-color: #c33;
+}
+
+#cancelDelete {
+    background-color: #cccccc;
+    color: black;
+}
+
+#cancelDelete:hover {
+    background-color: #aaa;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }

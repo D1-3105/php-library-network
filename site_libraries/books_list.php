@@ -31,10 +31,8 @@
         <div id="result"></div>
         
     </div>
-
+    <script src="/js/want.js"></script>
     <script>
-
-
         // Обработчик события отправки формы
         document.getElementById('sortForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Отменяем стандартное поведение отправки формы
@@ -48,22 +46,5 @@
                 }
             };
             xhr.send();
-        });
-
-        // Обработчик события отправки формы для добавления новой книги
-        document.getElementById('addBookForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Отменяем стандартное поведение отправки формы
-            var formData = new FormData(this);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'new_book.php', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Выводим сообщение об успешном добавлении
-                    alert(xhr.responseText);
-                    // Обновляем список книг
-                    document.getElementById('sortForm').dispatchEvent(new Event('submit'));
-                }
-            };
-            xhr.send(formData);
         });
     </script>

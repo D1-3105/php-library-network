@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     document.body.appendChild(emailModal);
 
-    document.querySelector(".close").addEventListener("click", function() {
+    // Убедитесь, что обработчик добавлен после того, как модальное окно добавлено в DOM
+    document.querySelector("#emailModal .close").addEventListener("click", function() {
         emailModal.style.display = "none";
     });
 
@@ -43,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(function(data) {
-            alert(data.message);
+            showToast(data.message, true);
         })
         .catch(function(error) {
-            alert(error.message);
+            showToast(error.message, false);
         });
 
         emailModal.style.display = "none";

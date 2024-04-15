@@ -1,30 +1,21 @@
 <link href="/css/profile.css" rel="stylesheet"/>
 <?php
 include "connection.php";
+require_once "auth.php";
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-$USER = null;
+$USER = Auth::getAuthedUser($conn);
 
-$user_id = $_SESSION["user_id"];
-if($user_id) {
-    $sql = 'SELECT * FROM users WHERE users.user_id = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    
-    $stmt->execute();
+if (!$USER) {
+    echo "<p>Нет доступа! <a href='/'>На главную.</a></p>";
+}
 
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $USER = $result->fetch_assoc();
-        if ($USER["library_role"] === "READER"){
-            include "profile_reader.php";
-        } elseif ($USER["library_role"] === "LIBRARIAN") {
-            include "profile_librarian.php";
-        }
-    } else {
-        echo "<p>Нет доступа! <a href='/'>На главную.</a></p>";
-    }
-    $stmt->close();
+if ($USER["library_role"] === "READER"){
+    include "profile_reader.php";
+} elseif ($USER["library_role"] === "LIBRARIAN") {
+    include "profile_librarian.php";
 }
 ?>

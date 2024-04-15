@@ -15,8 +15,8 @@ if ($is_logged_in && strpos($url, '/profile') === false) {
     // На странице профиля ничего не выводим
 } else {
     // Если пользователь не залогинен, отображаем кнопки входа и регистрации
-    $login_block = '<a class="nav-link nav-reg" href="/login.php"><i class="fas fa-sign-in-alt"></i> Login&nbsp;</a>';
-    $register_block = '<a class="nav-link nav-reg" href="/register.php"><i class="fas fa-user-plus"></i> Register</a>';
+    $login_block = '<a class="nav-link nav-reg" href="/login/"><i class="fas fa-sign-in-alt"></i> Login&nbsp;</a>';
+    $register_block = '<a class="nav-link nav-reg" href="/register/"><i class="fas fa-user-plus"></i> Register</a>';
 
     echo $login_block;
     echo $register_block;

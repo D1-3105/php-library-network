@@ -23,6 +23,24 @@ class Auth {
             throw new Exception('Пользователь не авторизован.');
         }
     }
+
+    public static function getAuthedUser($conn) {
+        $uid = self::getUserId();
+        if (!$uid) {
+            throw new Exception("User is not logged in!");
+        }
+        $sql = 'SELECT * FROM users WHERE users.user_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $uid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $USER = $result->fetch_assoc();
+            return $USER;
+        } else {
+            throw new Exception("User not found!");
+        }
+    }
 }
 
 ?>

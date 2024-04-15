@@ -2,13 +2,7 @@
 // Подключаемся к базе данных
 include "connection.php";
 
-// Получаем список пользователей
-$query_users = "SELECT user_id, name FROM users";
-$result_users = $conn->query($query_users);
-
-// Получаем список книг
-$query_books = "SELECT book_id, title FROM books";
-$result_books = $conn->query($query_books);
+$libraryId = $USER['library_id'];
 ?>
 
 <!-- Форма выбора пользователя и книги -->
@@ -63,6 +57,12 @@ $result_books = $conn->query($query_books);
     </tbody>
 </table>
 
+
+<?php
+include "utils/confirm_modal.php";
+confirmModal("Вы уверены, что хотите выдать эту книгу?", "Подтвердить", "Отмена");
+?>
+
 <script>
 // Обработчик отправки формы
 document.getElementById("filterForm").addEventListener("submit", function(event) {
@@ -84,28 +84,57 @@ document.getElementById("filterForm").addEventListener("submit", function(event)
             console.error('Ошибка при отправке запроса:', error);
         });
 });
-    function confirmApprove(preferenceId, bookId) {
-        if (confirm("Вы уверены, что хотите выдать эту книгу?")) {
-            // Отправка POST-запроса на сервер для одобрения книги
-            fetch('/approve_desired_book.php', {
-                method: 'POST',
-                body: JSON.stringify({ book_id: bookId, preference_id: preferenceId }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Перезагрузка страницы после успешного одобрения книги
-                    location.reload();
-                } else {
-                    // Уведомление пользователя об ошибке
-                    alert('Ошибка при одобрении книги');
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка при отправке запроса:', error);
-            });
+function confirmAction(preferenceId, bookId, callback) {
+    const modal = document.getElementById('confirmModal');
+    const close = document.querySelector('#confirmModal .close');
+    const confirmAction = document.getElementById('confirmDelete');
+    const cancelAction = document.getElementById('cancelDelete');
+    const modalText = document.querySelector('#confirmModal p');
+    modal.style.display = 'block';
+
+    close.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    cancelAction.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
-    }
+    };
+
+    confirmAction.onclick = function() {
+        modal.style.display = 'none';
+        callback(preferenceId, bookId);
+    };
+}
+
+function approveBook(preferenceId, bookId) {
+    fetch('/approve_desired_book.php', {
+        method: 'POST',
+        body: JSON.stringify({ book_id: bookId, preference_id: preferenceId }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            location.reload();
+        } else {
+            showToast('Ошибка при одобрении книги', false);
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка при отправке запроса:', error);
+    });
+}
+
+function confirmApprove(preferenceId, bookId) {
+    confirmAction(preferenceId, bookId, approveBook);
+}
+
+
 </script>

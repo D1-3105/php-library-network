@@ -15,6 +15,21 @@ class Router {
                 $this->renderView('library_detail.php', 200);
             } 
             
+            elseif ($uri === '/register/')
+            {
+                $this->renderView("register.php");
+            }
+
+            elseif ($uri === '/login/')
+            {
+                $this->renderView("login.php");
+            }
+
+            elseif ($uri === "/contacts/")
+            {
+                $this->renderView("contacts.php");
+            }
+
             elseif ($uri === '/libraries/') 
             {
                 // Если URI просто обозначает список библиотек

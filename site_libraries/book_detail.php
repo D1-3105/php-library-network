@@ -1,19 +1,3 @@
-<style>
-    .book-description {
-        white-space: pre-line;
-    }
-    .btn-want {
-        animation: pulse 2s infinite;
-        background: #863fc8;
-        border: #863fc8;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-</style>
-
 <div class="container mt-5">
     <h1 class="mb-4">Детальная информация о книге</h1>
     <div class="row">
@@ -81,7 +65,7 @@
         
                 if ($library_role == "READER") {
                     echo '<div class="text-center mt-4">';
-                    echo '<button id="btn-want" class="btn btn-primary btn-want" onclick="addToDesiredBooks(' . $book_id . ')">ХОЧУ!</button>';
+                    echo '<button id="btn-want-'. $book_id .'"" class="btn btn-primary btn-want-active" onclick="addToDesiredBooks(' . $book_id . ')">ХОЧУ!</button>';
                     echo '</div>';
                 }
             }
@@ -91,43 +75,4 @@
     </div>
 </div>
 
-
-<script>
-    // Функция для отправки AJAX-запроса на сервер
-    function addToDesiredBooks(bookId) {
-        console.log(bookId);
-        // Создаем объект XMLHttpRequest
-        let xhr = new XMLHttpRequest();
-
-        // Настраиваем AJAX-запрос
-        xhr.open("POST", `/add_desired_book.php?book_id=${bookId}`, true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        // Обработка ответа от сервера
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // Успешный ответ от сервера
-                let response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    // Если добавление в корзину прошло успешно, скрываем кнопку "ХОЧУ!"
-                    let btnWant = document.getElementById("btn-want");
-                    btnWant.style.display = "none";
-
-                    // Выводим уведомление о успешном добавлении в корзину
-                    alert(response.message);
-                } else {
-                    // Если сервер вернул ошибку, выводим уведомление
-                    alert("Ошибка: " + response.message);
-                }
-            } else {
-                // Если произошла ошибка при обращении к серверу, выводим уведомление
-                alert("Произошла ошибка при отправке запроса на сервер.");
-            }
-        };
-
-        // Отправляем AJAX-запрос
-        xhr.send();
-        console.log(xhr);
-    }
-</script>
-
+<script src="/js/want.js"></script>
